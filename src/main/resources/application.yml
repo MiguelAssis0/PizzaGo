@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: pizzaGo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pizzaGo
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
