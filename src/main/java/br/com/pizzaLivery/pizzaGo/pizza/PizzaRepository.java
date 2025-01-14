@@ -1,4 +1,4 @@
-package pizza;
+package br.com.pizzaLivery.pizzaGo.pizza;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
