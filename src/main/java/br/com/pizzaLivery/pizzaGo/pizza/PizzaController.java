@@ -1,13 +1,8 @@
 package br.com.pizzaLivery.pizzaGo.pizza;
 
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +26,21 @@ public class PizzaController {
 	public List<PizzaDTO> FindAll(){
 		return pizzaService.FindPizza();
 
+	}
+
+	@GetMapping("/{id}")
+	public PizzaDTO GetById(@PathVariable Long id){
+		return pizzaService.FindPizzaById(id);
+	}
+
+	@PutMapping("/{id}")
+	public PizzaDTO PutPizza(@PathVariable Long id,@RequestBody PizzaDTO dto){
+		return pizzaService.UpdatePizza(id, dto);
+	}
+
+	@DeleteMapping("/{id}")
+	public String DeleteById(@PathVariable Long id){
+		return pizzaService.DeletePizzaById(id);
 	}
 
 }

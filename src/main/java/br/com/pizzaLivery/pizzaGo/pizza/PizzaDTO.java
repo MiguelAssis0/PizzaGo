@@ -1,34 +1,32 @@
 package br.com.pizzaLivery.pizzaGo.pizza;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
 @Setter
 public class PizzaDTO {
-    @NotNull (message = "Name is required")
+    @NotBlank
     public String name;
-
-    @NotNull(message = "Price is required")
+    @Positive
     public double price;
-
-    @NotNull(message = "Available status is required")
-    public boolean avaliable;
-
+    public Boolean avaliable;
     public Flavor flavor;
     public Size size;
+    public Categorys categorys;
 
-    public PizzaDTO(String name, double price, Size size, Flavor flavor, boolean avaliable) {
+    public PizzaDTO(){}
+
+    public PizzaDTO(String name, double price, Size size, Flavor flavor, Boolean avaliable, Categorys categorys) {
         this.name = name;
         this.price = price;
         this.size = size;
         this.flavor = flavor;
         this.avaliable = avaliable;
+        this.categorys = categorys;
     }
 }
 
