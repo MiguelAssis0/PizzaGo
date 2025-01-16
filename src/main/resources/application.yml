@@ -8,3 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  error:
+    include-stacktrace: never

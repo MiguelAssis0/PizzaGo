@@ -4,6 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,19 +21,20 @@ public class PizzaService {
     public PizzaDTO CreateRegister(PizzaDTO dto) {
         Pizza pizza = new Pizza(dto.name, dto.price, dto.avaliable, dto.size, dto.flavor, dto.categorys);
         pizzaRepository.save(pizza);
-        return dto;
+        PizzaDTO PizzaCreated = new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys);
+        return PizzaCreated;
     }
 
-    public List<PizzaDTO> FindPizza(){
-        List<Pizza> pizzas = pizzaRepository.findAll();
-        return pizzas.stream()
-                .map(pizza -> new PizzaDTO(pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys))
-                .collect(Collectors.toList());
+    public Page<PizzaDTO> FindPizza(Pageable pageable){
+        return pizzaRepository
+                .findAll(pageable)
+                .map(pizza -> new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys));
+
     }
 
     public PizzaDTO FindPizzaById(Long id){
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        return new PizzaDTO(pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys);
+        return new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys);
     }
 
     public PizzaDTO UpdatePizza(Long id, PizzaDTO dto) {
@@ -46,16 +49,13 @@ public class PizzaService {
 
         pizzaRepository.save(pizza);
 
-        return new PizzaDTO(pizza.name, pizza.price, pizza.size,
+        return new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size,
                 pizza.flavor, pizza.avaliable, pizza.categorys);
     }
 
-    public String DeletePizzaById(Long id){
+    public void DeletePizzaById(Long id){
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         pizzaRepository.delete(pizza);
-
-
-        return "Pizza has been deleted!";
     }
 
 

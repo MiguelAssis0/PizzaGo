@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PizzaDTO {
+    public Long id;
     @NotBlank
     public String name;
     @Positive
@@ -27,6 +28,16 @@ public class PizzaDTO {
         this.flavor = flavor;
         this.avaliable = avaliable;
         this.categorys = categorys;
+    }
+
+    public PizzaDTO(Long id, String name, double price, Size size, Flavor flavor, Boolean avaliable, Categorys categorys) {
+        this.name = name;
+        this.price = price;
+        this.size = size;
+        this.flavor = flavor;
+        this.avaliable = avaliable;
+        this.categorys = categorys;
+        this.id = id;
     }
 }
 

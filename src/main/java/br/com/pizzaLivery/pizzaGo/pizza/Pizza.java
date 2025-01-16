@@ -16,7 +16,7 @@ import lombok.*;
 public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	public Long id;
 	public String name;
 	public double price;
 	public Boolean avaliable;
