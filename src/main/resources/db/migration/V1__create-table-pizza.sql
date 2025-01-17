@@ -7,3 +7,4 @@ CREATE TABLE IF NOT EXISTS Pizza (
     flavor VARCHAR(50) NOT NULL,
     size VARCHAR(50) NOT NULL
 );
+
