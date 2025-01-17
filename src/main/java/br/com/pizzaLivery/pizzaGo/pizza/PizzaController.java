@@ -18,14 +18,15 @@ import java.util.List;
 @RequestMapping("/pizza")
 @RequiredArgsConstructor
 public class PizzaController {
-	
-	@Autowired
-	private PizzaService pizzaService;
 
-	@PostMapping
+	private final PizzaService pizzaService;
+
+    public PizzaController(PizzaService pizzaService) { this.pizzaService = pizzaService; }
+
+    @PostMapping
 	public ResponseEntity<PizzaDTO> Register(@Valid @RequestBody PizzaDTO dto, UriComponentsBuilder uriBuilder) {
 		PizzaDTO createPizza = pizzaService.CreateRegister(dto);
-		URI address = uriBuilder.path("/pizza/{id}").buildAndExpand(createPizza.id).toUri();
+		URI address = uriBuilder.path("/pizza/{id}").buildAndExpand(createPizza.getId()).toUri();
 		return ResponseEntity.created(address).body(createPizza);
 
 	}

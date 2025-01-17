@@ -8,49 +8,47 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class PizzaService {
 
-    @Autowired
-    private PizzaRepository pizzaRepository;
+    private final PizzaRepository pizzaRepository;
+
+    public PizzaService(PizzaRepository pizzaRepository) { this.pizzaRepository = pizzaRepository; }
 
     public PizzaDTO CreateRegister(PizzaDTO dto) {
-        Pizza pizza = new Pizza(dto.name, dto.price, dto.avaliable, dto.size, dto.flavor, dto.categorys);
+        Pizza pizza = new Pizza(dto.getName(), dto.getPrice(), dto.getAvaliable(), dto.getSize(),dto.getFlavor(),dto.getCategorys());
         pizzaRepository.save(pizza);
-        PizzaDTO PizzaCreated = new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys);
-        return PizzaCreated;
+        return new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(), pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys());
     }
 
     public Page<PizzaDTO> FindPizza(Pageable pageable){
         return pizzaRepository
                 .findAll(pageable)
-                .map(pizza -> new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys));
+                .map(pizza -> new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(), pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys()));
 
     }
 
     public PizzaDTO FindPizzaById(Long id){
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        return new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size, pizza.flavor, pizza.avaliable, pizza.categorys);
+        return new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(), pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys());
     }
 
     public PizzaDTO UpdatePizza(Long id, PizzaDTO dto) {
         Pizza pizza = pizzaRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 
-        if(dto.name != null) pizza.name = dto.name;
-        if(dto.price > 0 && dto.price != pizza.price) pizza.price = dto.price;
-        if(dto.avaliable != null) pizza.avaliable = dto.avaliable;
-        if(dto.size != null) pizza.size = dto.size;
-        if(dto.flavor != null) pizza.flavor = dto.flavor;
-        if(dto.categorys != null) pizza.categorys = dto.categorys;
+        if(dto.getName() != null) pizza.setName(dto.getName());
+        if(dto.getPrice() > 0 && dto.getPrice() != pizza.getPrice()) pizza.setPrice(dto.getPrice());
+        if(dto.getAvaliable() != null) pizza.setAvaliable(dto.getAvaliable());
+        if(dto.getSize() != null) pizza.setSize(dto.getSize());
+        if(dto.getFlavor() != null) pizza.setFlavor(dto.getFlavor());
+        if(dto.getCategorys() != null) pizza.setCategorys(dto.getCategorys());
 
         pizzaRepository.save(pizza);
 
-        return new PizzaDTO(pizza.id, pizza.name, pizza.price, pizza.size,
-                pizza.flavor, pizza.avaliable, pizza.categorys);
+        return new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(),
+                pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys());
     }
 
     public void DeletePizzaById(Long id){

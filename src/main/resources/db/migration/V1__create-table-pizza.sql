@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS Pizza (
     price DOUBLE PRECISION NOT NULL,
     avaliable BOOLEAN NOT NULL,
     flavor VARCHAR(50) NOT NULL,
+    categorys VARCHAR(50) NOT NULL,
     size VARCHAR(50) NOT NULL
 );
 

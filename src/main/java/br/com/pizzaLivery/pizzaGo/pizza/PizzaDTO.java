@@ -9,35 +9,51 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PizzaDTO {
-    public Long id;
+    private Long id;
     @NotBlank
-    public String name;
+    private String name;
     @Positive
-    public double price;
-    public Boolean avaliable;
-    public Flavor flavor;
-    public Size size;
-    public Categorys categorys;
+    private double price;
+    private Boolean avaliable;
+    private Flavor flavor;
+    private Size size;
+    private Categorys categorys;
 
     public PizzaDTO(){}
 
     public PizzaDTO(String name, double price, Size size, Flavor flavor, Boolean avaliable, Categorys categorys) {
-        this.name = name;
-        this.price = price;
-        this.size = size;
-        this.flavor = flavor;
-        this.avaliable = avaliable;
-        this.categorys = categorys;
+        setName(name);
+        setPrice(price);
+        setAvaliable(avaliable);
+        setCategorys(categorys);
+        setFlavor(flavor);
+        setSize(size);
     }
 
     public PizzaDTO(Long id, String name, double price, Size size, Flavor flavor, Boolean avaliable, Categorys categorys) {
-        this.name = name;
-        this.price = price;
-        this.size = size;
-        this.flavor = flavor;
-        this.avaliable = avaliable;
-        this.categorys = categorys;
-        this.id = id;
+        setName(name);
+        setPrice(price);
+        setAvaliable(avaliable);
+        setCategorys(categorys);
+        setFlavor(flavor);
+        setSize(size);
+        setId(id);
     }
+
+    protected Long getId() { return id; }
+    protected String getName() { return name; }
+    protected double getPrice() { return price; }
+    protected Boolean getAvaliable() { return avaliable; }
+    protected Flavor getFlavor() { return flavor; }
+    protected Size getSize() { return size; }
+    protected Categorys getCategorys() { return categorys; }
+
+    private void setId(Long id) { this.id = id; }
+    private void setName(String name) { this.name = name; }
+    private void setPrice(double price) { this.price = price; }
+    private void setAvaliable(Boolean avaliable) { this.avaliable = avaliable; }
+    private void setFlavor(Flavor flavor) { this.flavor = flavor; }
+    private void setSize(Size size) { this.size = size; }
+    private void setCategorys(Categorys categorys) { this.categorys = categorys; }
 }
 
