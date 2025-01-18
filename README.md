@@ -29,9 +29,9 @@ a partir dessa rota, você deverá indicar em um JSON o username e o password. A
 
 Alguns atributos das tabelas só aceitam valores especificos, importante que seja inseridos em UPPERCASE.
 
-size: PEQUENO, MEDIO, GRANDE
-flavor: CALABRESA, QUATRO_QUEIJOS, MARGHERITA, CHOCOLATE
-categorys: SALGADO, DOCE
+size: PEQUENO, MEDIO, GRANDE <br/>
+flavor: CALABRESA, QUATRO_QUEIJOS, MARGHERITA, CHOCOLATE<br/>
+categorys: SALGADO, DOCE <br/>
 
 
 
