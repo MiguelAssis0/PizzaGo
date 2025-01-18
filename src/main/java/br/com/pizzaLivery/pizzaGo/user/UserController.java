@@ -1,6 +1,7 @@
 package br.com.pizzaLivery.pizzaGo.user;
 
 import com.fasterxml.jackson.core.TreeNode;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

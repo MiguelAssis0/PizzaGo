@@ -1,5 +1,7 @@
 package br.com.pizzaLivery.pizzaGo.pizza;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +17,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/pizza")
+@SecurityRequirement(name = "bearer-key")
 public class PizzaController {
 
 	private final PizzaService pizzaService;
@@ -27,6 +30,7 @@ public class PizzaController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE
 	)
+
 	public ResponseEntity<PizzaDTO> Register(@Valid @RequestBody PizzaDTO dto, UriComponentsBuilder uriBuilder) {
 		PizzaDTO createPizza = pizzaService.CreateRegister(dto);
 		URI address = uriBuilder.path("/pizza/{id}").buildAndExpand(createPizza.getId()).toUri();
