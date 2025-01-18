@@ -5,24 +5,24 @@ Este é um projeto feito com Java Spring Boot, com a intenção de praticar meus
 
 ## Documentação
 
-Para acessar os endpoints do projeto, é necessário iniciar o projeto em alguma IDE (IntelliJ, Eclipse, entre outros), e acessar pelo navegador a seguinte url:
+Para acessar os endpoints do projeto, é necessário iniciar o projeto em alguma IDE (IntelliJ, Eclipse, entre outros), e acessar pelo navegador a seguinte url: <br/>
 
 http://localhost:8080/swagger-ui/index.html
 
 ## Conexão no Banco de Dados
-Para que a API acesse o banco de dados e funcione corretamente, é necessário iniciar um banco de dados PostgreSQL localmente, e inserir as informações para a conexão com o Banco de Dados no seguinte diretório:
+Para que a API acesse o banco de dados e funcione corretamente, é necessário iniciar um banco de dados PostgreSQL localmente, e inserir as informações para a conexão com o Banco de Dados no seguinte diretório: <br/>
 
-PizzaGo/src/main/java/resources/application.yml
+PizzaGo/src/main/java/resources/application.yml <br/>
 
 É importante destacar que a API não irá funcionar caso o banco de dados não esteja ativo.
 
 ## Cadastro e Login
 
-Para cadastrar um usuário, é necessário acessar a rota:
-localhost:8080/users
+Para cadastrar um usuário, é necessário acessar a rota: <br/>
+localhost:8080/users <br/>
 
-após realizar o cadastro, você deverá acessar a rota:
-localhost:8080/login
+após realizar o cadastro, você deverá acessar a rota: <br/>
+localhost:8080/login <br/>
 a partir dessa rota, você deverá indicar em um JSON o username e o password. Após fazer isso, será gerado um token, onde deverá ser inserido para fazer as requisições nas rotas /pizza.
 
 ## Enums
