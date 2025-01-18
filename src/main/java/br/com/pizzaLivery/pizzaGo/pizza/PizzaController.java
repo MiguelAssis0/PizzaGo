@@ -37,11 +37,10 @@ public class PizzaController {
 		return ResponseEntity.created(address).body(createPizza);
 	}
 
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping()
 	public ResponseEntity<Page<PizzaDTO>> FindAll(@PageableDefault(size = 10) Pageable pageable) {
 		Page<PizzaDTO> pizzas = pizzaService.FindPizza(pageable);
 		return ResponseEntity.ok(pizzas);
-
 	}
 
 	@GetMapping(
