@@ -1,8 +1,6 @@
 package br.com.pizzaLivery.pizzaGo.pizza;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,21 +8,18 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@RequiredArgsConstructor
 public class PizzaService {
-
-    private final PizzaRepository pizzaRepository;
-
-    public PizzaService(PizzaRepository pizzaRepository) { this.pizzaRepository = pizzaRepository; }
+    @Autowired
+    private PizzaRepository pizzaRepository;
 
     public PizzaDTO CreateRegister(PizzaDTO dto) {
         Pizza pizza = new Pizza(dto.getName(), dto.getPrice(), dto.getAvaliable(), dto.getSize(),dto.getFlavor(),dto.getCategorys());
         pizzaRepository.save(pizza);
         return new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(), pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys());
     }
-
+ 
     public Page<PizzaDTO> FindPizza(Pageable pageable){
-        return pizzaRepository
+        return pizzaRepository 
                 .findAll(pageable)
                 .map(pizza -> new PizzaDTO(pizza.getId(), pizza.getName(), pizza.getPrice(), pizza.getSize(), pizza.getFlavor(), pizza.getAvaliable(), pizza.getCategorys()));
 

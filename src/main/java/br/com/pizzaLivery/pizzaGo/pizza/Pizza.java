@@ -12,7 +12,6 @@ import lombok.*;
 @Table(name = "pizza")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Pizza {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
