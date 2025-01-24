@@ -2,11 +2,7 @@ package br.com.pizzaLivery.pizzaGo.pizza;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class PizzaDTO {
     private Long id;
     @NotBlank
@@ -39,7 +35,7 @@ public class PizzaDTO {
         this.id = id;
     }
 
-    // Getters e Setters públicos
+
     public Long getId() { return id; }
     public String getName() { return name; }
     public double getPrice() { return price; }
